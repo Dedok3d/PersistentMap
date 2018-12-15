@@ -24,4 +24,56 @@ public class MyUnitTest {
         assert (map_1_10_2_30.get(2) == 30);
 
     }
+
+    @Test
+    public void test100list() {
+
+        PersistentMap<Integer, Integer> Map = new PersistentMap<>();
+        for(int i=0; i<100; i++){
+            Map = Map.insert(i, 10);
+        }
+        assert (Map.size() == 100);
+    }
+
+    @Test
+    public void test1000list() {
+
+        PersistentMap<Integer, Integer> Map = new PersistentMap<>();
+        for(int i=0; i<1000; i++){
+            Map = Map.insert(i, 10);
+        }
+        assert (Map.size() == 1000);
+    }
+
+    @Test
+    public void test10000list() {
+
+        PersistentMap<Integer, Integer> Map = new PersistentMap<>();
+        for(int i=0; i<10000; i++){
+            Map = Map.insert(i, 10);
+        }
+        assert (Map.size() == 10000);
+    }
+
+    @Test
+    public void test100000list() {
+
+        PersistentMap<Integer, Integer> Map = new PersistentMap<>();
+        for(int i=0; i<100000; i++){
+            Map = Map.insert(i, 10);
+        }
+        assert (Map.size() == 100000);
+    }
+
+    @Test
+    public void test1000000list() {
+
+        PersistentMap<Integer, Integer> Map = new PersistentMap<>();
+        for(int i=0; i<1000000; i++){
+            Map = Map.insert(i, 10);
+        }
+        assert (Map.size() == 1000000);
+    }
+
+
 }

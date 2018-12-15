@@ -96,21 +96,40 @@ public class MyAvlTree<KEY extends Comparable<KEY>, VALUE> {
             contain = 0;
         }
         node tmp = null;
-        if (this.root != null) tmp = this.root.copy();
+        if (this.root != null)
+            tmp = new node(this.root.key,this.root.value);
+        else {
+            tmp = new node(k,v);
+            return new MyAvlTree<>(tmp, this.size + contain);
+        }
+        tmp.left = this.root.left;
+        tmp.right = this.root.right;
+        //if (this.root != null) tmp = this.root.copy();
         tmp = insert(tmp, k, v);
         return new MyAvlTree<>(tmp, this.size + contain);
     }
 
     private node insert(node<KEY, VALUE> p, KEY k, VALUE v) {
         if (p == null) return new node(k, v);
-        if (k.compareTo(p.key) < 0)
-            p.left = insert(p.left, k, v);
+        node tmp = null;
+        if (k.compareTo(p.key) < 0) {
+            tmp = new node(p.key,p.value);
+            tmp.right = p.right;
+            tmp.left = insert(p.left, k, v);
+            //p.left = insert(p.left, k, v);
+        }
         else if (k.compareTo(p.key) > 0) {
-            p.right = insert(p.right, k, v);
+            tmp = new node(p.key,p.value);
+            tmp.left = p.left;
+            tmp.right = insert(p.right, k, v);
+            //p.right = insert(p.right, k, v);
         } else {
             p.value = v;
         }
-        return balance(p);
+        if(tmp == null)
+            return balance(p);
+        else
+            return balance(tmp);
     }
 
     private node findmax(node p) {
